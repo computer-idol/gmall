@@ -1,0 +1,43 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# IntelliJ project files
+.idea
+*.iml
+pom.xml.versionsBackup
+*.iws
+*.ipr
+out
+gen
+rebel.xml
+node_modules/
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+dep_lib
+artifact
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+*/.DS_Store
+.DS_Store
+**/.DS_Store
+
+#log 文件不用传
+*.log
+*.out
+*.bak
+*.lck
+
+
+#hbm文件不上传
+*.hbm.xml
+
+#npm build dist 不要上传
+dist
+logs/*
+artifact/*

@@ -1,0 +1,80 @@
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/gmall?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useAffectedRows=true
+      username: root
+      password: 123456
+      max-active: 30
+      min-idle: 10
+      max-wait: 60000
+      time-between-eviction-runs-millis: 2000
+      min-evictable-idle-time-millis: 600000
+      max-evictable-idle-time-millis: 900000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      keep-alive: true
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      use-global-data-source-stat: true
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: 123456
+        allow: 127.0.0.1
+        url-pattern: "/druid/*"
+        reset-enable: false
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+        enabled: true
+      default-auto-commit: false
+      phy-max-use-count: 1000
+  application:
+    name: user-service
+  redis:
+    host: 47.112.214.8
+    port: 6379
+    database: 0
+
+
+mybatis:
+  # classpath* 此處的* 必須添加 否则会只扫描一个 jar 包，非常重要，2个小时的调试结果。
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+server:
+  port: 9670
+
+#日志
+logging:
+  level:
+    root: debug
+
+#dubbo配置
+dubbo:
+  # dubbo中的服务名称
+  application:
+    id: user-service
+    name: user-service
+    qosEnable: false
+  # zookeeper注册中心
+  registry:
+    protocol: zookeeper
+    address: zookeeper://47.112.214.8:2181
+  ## 通讯协议
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.wang.gmall

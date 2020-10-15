@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.gmall.user.mapper.UserMapper">
+<!--&lt;!&ndash;    <select id="selectByPrimaryKey" resultType="com.wang.gmall.bean.bean.UmsMember">&ndash;&gt;-->
+<!--&lt;!&ndash;        select&ndash;&gt;-->
+<!--&lt;!&ndash;            id,&ndash;&gt;-->
+<!--&lt;!&ndash;            member_level_id  memberLevelId,&ndash;&gt;-->
+<!--&lt;!&ndash;            username,&ndash;&gt;-->
+<!--&lt;!&ndash;            password,&ndash;&gt;-->
+<!--&lt;!&ndash;            nickname,&ndash;&gt;-->
+<!--&lt;!&ndash;            phone,&ndash;&gt;-->
+<!--&lt;!&ndash;            status,&ndash;&gt;-->
+<!--&lt;!&ndash;            create_time createTime,&ndash;&gt;-->
+<!--&lt;!&ndash;            icon,&ndash;&gt;-->
+<!--&lt;!&ndash;            gender,&ndash;&gt;-->
+<!--&lt;!&ndash;            birthday,&ndash;&gt;-->
+<!--&lt;!&ndash;            city,&ndash;&gt;-->
+<!--&lt;!&ndash;            job,&ndash;&gt;-->
+<!--&lt;!&ndash;            personalized_signature personalizedSignature,&ndash;&gt;-->
+<!--&lt;!&ndash;            source_type,&ndash;&gt;-->
+<!--&lt;!&ndash;            integration,&ndash;&gt;-->
+<!--&lt;!&ndash;            growth,&ndash;&gt;-->
+<!--&lt;!&ndash;            luckey_count luckyCount,&ndash;&gt;-->
+<!--&lt;!&ndash;            history_integration historyIntegration&ndash;&gt;-->
+<!--&lt;!&ndash;        from ums_member where id = #{userid}&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+</mapper>
