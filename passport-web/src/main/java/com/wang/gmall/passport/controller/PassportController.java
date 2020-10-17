@@ -2,6 +2,7 @@ package com.wang.gmall.passport.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.wang.gmall.bean.UmsMember;
+import com.wang.gmall.passport.util.Oauth2Util;
 import com.wang.gmall.service.UserService;
 import com.wang.gmall.util.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +26,7 @@ public class PassportController {
   UserService userService;
 
   @RequestMapping(value = "index.html")
-  public String index(@RequestParam("ReturnUrl") String ReturnUrl, ModelMap modelMap){
+  public String index(@RequestParam(value = "ReturnUrl",required = false) String ReturnUrl, ModelMap modelMap){
     if(StringUtils.isNotBlank(ReturnUrl)){
       modelMap.put("ReturnUrl",ReturnUrl);
     }
@@ -42,15 +43,8 @@ public class PassportController {
       //使用jwt制作token
       Integer userId = umsMember1.getId();
       String username = umsMember1.getUsername();
-      Map<String,Object> userMap = new HashMap<>();
-      userMap.put("memberId",userId);
-      userMap.put("username",username);
-
-      //获取ip
-      String ip = getIp(request);
-
       //需要加密，先不写
-      token = JwtUtil.encode("centos7wang",userMap, ip);
+      token = getJwtToken(request,userId,username);
       //redis存入token
       userService.addToken(token,umsMember1.getId());
     }
@@ -58,6 +52,35 @@ public class PassportController {
       token = "fail";
     }
     return token;
+  }
+
+  //微博登录的回调，获取授权码
+  @RequestMapping(value="vlogin",produces = "application/json; charset=utf-8")
+  public String vlogin(@RequestParam("code")String code,HttpServletRequest request){
+     Map<String,String> access = Oauth2Util.getAccess(code);
+     Map<String,String> userMap = Oauth2Util.getUserMessage(access);
+     String accessToken = access.get("access_token");
+     String uid = access.get("uid");
+     String name = userMap.get("screen_name");
+     String location = userMap.get("location");
+     //用户信息存到数据库,类型设成微博用户
+     UmsMember umsMember = new UmsMember();
+     umsMember.setAccessToken(accessToken);
+     umsMember.setSourceUid(uid);
+     umsMember.setSourceType(2);
+     umsMember.setUsername(name);
+     umsMember.setCity(location);
+
+     //方法里已经判断了是否原来存在
+     umsMember = userService.addOauth(umsMember);
+     //生成jwtToken，重定向到首页，携带token
+     Integer userId = umsMember.getId();
+     String username = umsMember.getUsername();
+     //需要加密，先不写
+     String token = getJwtToken(request,userId,username);
+     //redis存入token
+     userService.addToken(token,userId);
+     return "redirect:http://list.mall.com/index.html?token="+token;
   }
 
   @RequestMapping(value="verify")
@@ -89,4 +112,17 @@ public class PassportController {
     }
     return ip;
   }
+
+  public String getJwtToken(HttpServletRequest request,Integer userId,String username){
+    Map<String,Object> userMap = new HashMap<>();
+    userMap.put("memberId",userId);
+    userMap.put("username",username);
+
+    //获取ip
+    String ip = getIp(request);
+
+    //需要加密，先不写
+    return JwtUtil.encode("centos7wang",userMap, ip);
+  }
+
 }

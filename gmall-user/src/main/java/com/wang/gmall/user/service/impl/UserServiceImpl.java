@@ -46,6 +46,10 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void addToken(String token, Integer id) {
+  }
 
+  @Override
+  public UmsMember addOauth(UmsMember umsMember) {
+    return null;
   }
 }

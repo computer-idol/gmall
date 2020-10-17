@@ -20,4 +20,6 @@ public interface UserService {
   UmsMember login(UmsMember umsMember);
 
   void addToken(String token, Integer id);
+
+  UmsMember addOauth(UmsMember umsMember);
 }

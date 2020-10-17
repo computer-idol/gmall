@@ -91,6 +91,20 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+  @Override
+  public UmsMember addOauth(UmsMember umsMember) {
+     //先判断有无存在
+     UmsMember umsMember1 = new UmsMember();
+     umsMember1.setSourceUid(umsMember.getSourceUid());
+     umsMember1 = userMapper.selectOne(umsMember1);
+     if(umsMember1==null){
+       userMapper.insertSelective(umsMember);
+       return umsMember;
+     }else{
+       return umsMember1;
+     }
+  }
+
   private UmsMember loginFromDb(UmsMember umsMember) {
      return userMapper.selectOne(umsMember);
   }
