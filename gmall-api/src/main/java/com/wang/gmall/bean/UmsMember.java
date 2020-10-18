@@ -19,17 +19,17 @@ public class UmsMember implements Serializable {
     private int status;
     private Date createTime;
     private String icon;
-    private int         gender;
+    private Integer         gender;
     private Date birthday;
     private String        city;
     private String job;
     private String         personalizedSignature;
     private Integer sourceType;
     private String sourceUid;//微博的id
-    private int         integration;
-    private int growth;
-    private int         luckeyCount;
-    private int historyIntegration;
+    private Integer         integration;
+    private Integer growth;
+    private Integer         luckeyCount;
+    private Integer historyIntegration;
     private String accessToken;
 
 }

@@ -1,4 +1,4 @@
-package com.wang.gmall.order;
+package com.wang.gmall;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;

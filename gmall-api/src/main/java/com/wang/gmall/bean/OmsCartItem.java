@@ -28,7 +28,7 @@ public class OmsCartItem implements Serializable{
     private String memberNickname;
     private Date createDate;
     private Date modifyDate;
-    private int deleteStatus;
+    private Integer deleteStatus;
     private Integer productCategoryId;
     private String productBrand;
     private String productSn;

@@ -43,7 +43,11 @@ public class UserServiceImpl implements UserService {
   public List<UmsMemberReceiveAddress> getUserAddressList(int memberId) {
     Example example = new Example(UmsMemberReceiveAddress.class);
     example.createCriteria().andEqualTo("memberId",memberId);
-    return userAddressMapper.selectByExample(example);
+    List<UmsMemberReceiveAddress> addressList = userAddressMapper.selectByExample(example);
+    addressList.forEach(address->{
+      address.setAddress(address.getProvince()+address.getCity()+address.getRegion()+address.getDetailAddress());
+    });
+    return addressList;
   }
 
   @Override

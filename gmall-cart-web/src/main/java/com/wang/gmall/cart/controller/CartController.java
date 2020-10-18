@@ -54,14 +54,6 @@ public class CartController {
     return "cartList";
   }
 
-  @RequestMapping(value="toTrade")
-  @LoginRequire(mustLoginSuccess = true) //必须要登录成功
-  public String tradeCart(HttpServletRequest request,HttpServletResponse response,ModelMap modelMap){
-    Integer memberId = (Integer)request.getAttribute("memberId");
-    String username = (String)request.getAttribute("username");
-    return "One_JDshop";
-  }
-
   @RequestMapping(value="checkCart")
   @LoginRequire(mustLoginSuccess = false) //不一定要登录成功
   public String checkCart(Integer isChecked,Integer skuId,HttpServletRequest request,HttpServletResponse response,ModelMap modelMap){
