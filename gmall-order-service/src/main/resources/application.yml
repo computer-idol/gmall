@@ -76,6 +76,6 @@ dubbo:
   ## 通讯协议
   protocol:
     name: dubbo
-    port: 20885
+    port: 20834
   scan:
     base-packages: com.wang.gmall

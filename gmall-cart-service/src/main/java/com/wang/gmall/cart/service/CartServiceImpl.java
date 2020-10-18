@@ -85,4 +85,12 @@ public class CartServiceImpl implements CartService {
     flushCartDb(omsCartItem.getMemberId());
 
   }
+
+  @Override
+  public void delCart(Integer productSkuId, Integer memberId) {
+    OmsCartItem omsCartItem = new OmsCartItem();
+    omsCartItem.setMemberId(memberId);
+    omsCartItem.setProductSkuId(productSkuId);
+    orderCartMapper.delete(omsCartItem);
+  }
 }

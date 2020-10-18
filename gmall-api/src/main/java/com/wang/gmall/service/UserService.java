@@ -22,4 +22,6 @@ public interface UserService {
   void addToken(String token, Integer id);
 
   UmsMember addOauth(UmsMember umsMember);
+
+  UmsMemberReceiveAddress getUserAddresById(int receiveAddressId);
 }

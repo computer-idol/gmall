@@ -2,16 +2,21 @@ package com.wang.gmall.bean;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class OmsOrder implements Serializable {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer    memberId;
     private Integer couponId;
@@ -56,5 +61,8 @@ public class OmsOrder implements Serializable {
     private Date         receiveTime;
     private Date commentTime;
     private Date        modifyTime;
+
+    @Transient
+    private List<OmsOrderItem> omsOrderItems;
 
 }

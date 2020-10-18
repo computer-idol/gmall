@@ -109,6 +109,13 @@ public class UserServiceImpl implements UserService {
      }
   }
 
+  @Override
+  public UmsMemberReceiveAddress getUserAddresById(int receiveAddressId) {
+    UmsMemberReceiveAddress umsMemberReceiveAddress = new UmsMemberReceiveAddress();
+    umsMemberReceiveAddress.setMemberId(receiveAddressId);
+    return userAddressMapper.selectByPrimaryKey(umsMemberReceiveAddress);
+  }
+
   private UmsMember loginFromDb(UmsMember umsMember) {
      return userMapper.selectOne(umsMember);
   }
